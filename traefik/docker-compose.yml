@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  traefik:
+    image: "traefik:v2.6"
+    container_name: "traefik"
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.traefik=true"
+    ports:
+      # HTTPS / SSL port
+      - "443:443"
+      # The Traefik Web UI port (enabled by api:insecure: true in traefik.yml)
+      - "8080:8080"
+    volumes:
+     - ./traefik-config/traefik.yml:/etc/traefik/traefik.yml:ro
+     - ./traefik-config/config.yml:/etc/traefik/config.yml:ro
+     - ./certs:/etc/certs:ro
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+     - proxy
+     
+networks:
+  proxy:
+    external: true

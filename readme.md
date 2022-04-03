@@ -30,6 +30,5 @@ docker ps
 
 Toutes applications ajoutés seront dans le dossier `apps/` (dossier à créer)
 
-*template à venir*
 *template test :* https://github.com/PatrickVongsa/reactapp-docker
 
